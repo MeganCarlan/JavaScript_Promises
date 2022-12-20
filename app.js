@@ -1,3 +1,6 @@
+
+
+
 /**
  *
  * @returns A promise that is designed to resolve with a list of hobbits, or potentially fail with an failure object. The failure object includes a boolean success property and a string message property.
@@ -15,6 +18,24 @@ function getList() {
   });
 }
 
+let promise = getList();
+
+function handleList(list) {
+  list.forEach((name) => {
+    let li = document.createElement("li");
+    let list = document.getElementById("list");
+    li.textContent=name;
+    list.appendChild(li);
+  });
+}
+
+function handleError(errorMsg) {
+  console.log(errorMsg);
+  let error = document.getElementById("error");
+  error.innerHTML=errorMsg.message;
+}
+
+promise.then(handleList).catch(handleError);
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
